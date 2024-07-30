@@ -421,9 +421,21 @@ Poznámky:
 
 ---
 
-### Proměnné (Variables)
+### JavaScript Proměnné (Variables)
 
-Proměnné se používají k ukládání datových hodnot. JavaScript má tři způsoby deklarace proměnných:
+#### **Úvod do proměnných**
+
+Proměnné jsou základním stavebním kamenem v JavaScriptu. Používají se k ukládání a manipulaci s daty v programu.
+
+Základní syntax pro deklaraci proměnné:
+
+```javascript
+let nazevPromenne = hodnota;
+```
+
+#### **Typy deklarací**
+
+JavaScript má tři způsoby deklarace proměnných:
 
 1. `var`: Proměnná s funkčním nebo globálním rozsahem (starší syntax)
 2. `let`: Proměnná s blokovým rozsahem (zavedeno v ES6)
@@ -433,55 +445,41 @@ Příklady:
 
 ```javascript
 // var (vyhnout se používání v moderním JavaScriptu)
-var oldVar = "Jsem staromódní";
+var staryZpusob = "Jsem staromódní";
 
 // let
-let age = 30;
-age = 31; // OK
+let vek = 30;
+vek = 31; // OK
 
 // const
 const PI = 3.14159;
 PI = 3; // Chyba
-
-function varLetTest() {
-  console.log(foo); // undefined - hoisted, initialized
-  console.log(bar); // ReferenceError
-  
-  var foo = "Foo";
-  let bar = "Bar";
-
-  console.log(foo, bar); // Foo Bar
-
-  {
-    var moo = "Mooo"
-    let baz = "Bazz";
-    console.log(moo, baz); // Mooo Bazz
-  }
-
-  console.log(moo); // Mooo
-  console.log(baz); // ReferenceError
-}
-
-run();
 ```
 
-Klíčové rozdíly:
-- `var` má **funkční** nebo **globální** rozsah (scope), zatímco `let` a `const` mají **blokový** rozsah.
+#### Klíčové rozdíly:
+- `var` má **funkční** nebo **globální** rozsah, zatímco `let` a `const` mají **blokový** rozsah.
 - Proměnné deklarované pomocí `var` jsou **vyzdviženy (hoisted)**, zatímco `let` a `const` nejsou.
 - Proměnné `const` nemohou být přeřazeny, ale jejich vlastnosti mohou být modifikovány, pokud jsou objekty.
 
-Naming Conventions:
-- `maleVelke` proměnné  a funkce    (camelCase)
-- `VelkeVelke` třídy (classes)      (PascalCase)
-- `SPOJENY_HAD` konstanty           (UPPER_SNAKE_CASE)
+#### **Konvence pojmenování**
 
-    ```javascript
-    let userName = "John";
-    const MAX_SIZE = 100;
-    class UserProfile {}
-    ```
+V JavaScriptu se používají následující konvence pro pojmenování:
 
-Rozsah (scope):
+- `maleVelke` pro proměnné a funkce (camelCase)
+- `VelkeVelke` pro třídy (PascalCase)
+- `SPOJENY_HAD` pro konstanty (UPPER_SNAKE_CASE)
+
+Příklady:
+
+```javascript
+let uzivatelskeJmeno = "Jan";
+const MAX_VELIKOST = 100;
+class ProfilUzivatele {}
+```
+
+**Rozsah (Scope)**
+
+Rozsah určuje, kde v kódu je proměnná přístupná.
 
 - **Globální rozsah**: Proměnné deklarované mimo jakoukoli funkci.
 - **Funkční rozsah**: Proměnné deklarované uvnitř funkce (platí pro `var`).
@@ -490,52 +488,53 @@ Rozsah (scope):
 ```javascript
 let globalniPromenna = "Jsem globální";
 
-function testScope() {
-let funkcniPromenna = "Jsem uvnitř funkce";
+function testRozsahu() {
+    let funkcniPromenna = "Jsem uvnitř funkce";
 
-if (true) {
-    let blokovaPromenna = "Jsem uvnitř bloku";
-    var varPromenna = "Jsem také uvnitř bloku, ale s funkčním rozsahem";
-    console.log(blokovaPromenna); // OK
-}
+    if (true) {
+        let blokovaPromenna = "Jsem uvnitř bloku";
+        var varPromenna = "Jsem také uvnitř bloku, ale s funkčním rozsahem";
+        console.log(blokovaPromenna); // OK
+    }
 
-console.log(funkcniPromenna); // OK
-console.log(varPromenna); // OK
-console.log(blokovaPromenna); // ReferenceError
+    console.log(funkcniPromenna); // OK
+    console.log(varPromenna); // OK
+    console.log(blokovaPromenna); // ReferenceError
 }
 
 console.log(globalniPromenna); // OK
 console.log(funkcniPromenna); // ReferenceError
 ```
 
-**Hoistiong (vyzdvižení):**
+#### Hoisting
 
 Hoisting je JavaScript mechanismus, kde proměnné a funkční deklarace jsou přesunuty na začátek jejich rozsahu před provedením kódu.
 
 ```javascript
-console.log(hoistedVar); // undefined
-var hoistedVar = 5;
+console.log(vyzdvizenaVar); // undefined
+var vyzdvizenaVar = 5;
 
-hoistedFunction(); // "Ahoj, jsem vyzdvižená funkce!"
-function hoistedFunction() {
-console.log("Ahoj, jsem vyzdvižená funkce!");
+vyzdvizenaFunkce(); // "Ahoj, jsem vyzdvižená funkce!"
+function vyzdvizenaFunkce() {
+    console.log("Ahoj, jsem vyzdvižená funkce!");
 }
 
-console.log(notHoistedLet); // ReferenceError
-let notHoistedLet = 10;
+console.log(nevyzdvizenaLet); // ReferenceError
+let nevyzdvizenaLet = 10;
 ```
 
-**Temporal Dead Zone (TDZ)**
+#### Temporal Dead Zone (TDZ)
 
 TDZ je chování specifické pro `let` a `const`, kde proměnné existují v bloku, ale nemohou být použity před jejich deklarací.
 
 ```javascript
 {
-console.log(tdz); // ReferenceError
-let tdz = 5;
+    console.log(tdz); // ReferenceError
+    let tdz = 5;
 }
 ```
-**Globální objekty**
+
+#### Globální objekty
 
 V prohlížeči je globálním objektem `window`, v Node.js je to `global`.
 
@@ -549,48 +548,152 @@ global.globalniPromenna = "Jsem globální";
 console.log(globalniPromenna); // "Jsem globální"
 ```
 
-Best Practices:
-1. Pokud lze, používat `const`
-2. Pokud má být přeřazován, použít `let`
-3. Vyhnout se `var`
-4. Deklarovat v horní části rozsahu (scope)
-5. Používat dostatečně jasné názvy
+#### Best Practices
 
+1. Pokud lze, používejte `const`
+2. Pokud má být proměnná přeřazována, použijte `let`
+3. Vyhněte se použití `var`
+4. Deklarujte proměnné na začátku jejich rozsahu (scope)
+5. Používejte dostatečně jasné a popisné názvy proměnných
 
-Cvičení:
-1. Deklarovat `const` proměnnou pro vaše jméno a `let` proměnnou pro váš věk.
-- _<details><summary>Možné řešení</summary>_
+#### Cvičení
 
-    ```javascript
-    const jmeno = "Jan Novák";
-    let vek = 31;
-    ```
-</details>
+Cvičení jsou seřazena od nejjednodušších po nejsložitější:
 
-2. Zkusit přeřadit `const` proměnnou. Co se stane?
-- _<details><summary>Možné řešení</summary>_
+1. Deklarujte `const` proměnnou pro Vaše jméno a `let` proměnnou pro Váš věk.
+   
+   <details>
+   <summary>Řešení</summary>
 
-    ```javascript
-    const jmeno = "Karel Dravý";
-    jmeno = "Ondřej Prchal" // TypeError: Assignment to a constant variable.
-    ```
-</details>
+   ```javascript
+   const jmeno = "Jan Novák";
+   let vek = 31;
+   ```
+   </details>
 
-3. Vytvořit objekt pomocí `const` a modifikovat jednu z jeho vlastností. Lze?
-- _<details><summary>Možné řešení</summary>_
+2. Zkuste přeřadit `const` proměnnou. Co se stane?
+   
+   <details>
+   <summary>Řešení</summary>
 
-    ```javascript
-    const osoba = {
-    jmeno: "Jan Novák",
-    vek: 30
-    };
+   ```javascript
+   const jmeno = "Karel Dravý";
+   jmeno = "Ondřej Prchal" // TypeError: Assignment to a constant variable.
+   ```
+   </details>
 
-    osoba.vek = 31; // OK
-    console.log(osoba.vek); // 31
+3. Vytvořte objekt pomocí `const` a modifikujte jednu z jeho vlastností. Je to možné?
+   
+   <details>
+   <summary>Řešení</summary>
 
-    osoba = { jmeno: "Petr Svoboda", vek: 25 }; // TypeError: Assignment to a constant variable.
-    ```
-</details>
+   ```javascript
+   const osoba = {
+       jmeno: "Jan Novák",
+       vek: 30
+   };
+
+   osoba.vek = 31; // OK
+   console.log(osoba.vek); // 31
+
+   osoba = { jmeno: "Petr Svoboda", vek: 25 }; // TypeError: Assignment to a constant variable.
+   ```
+   </details>
+
+4. Napište funkci, která demonstruje rozdíl mezi `var` a `let` v cyklu.
+   
+   _<details><summary>Možné řešení</summary>_
+
+   ```javascript
+   function demonstraceVarLet() {
+       console.log("Použití var:");
+       for (var i = 0; i < 3; i++) {
+           setTimeout(() => console.log(i), 100);
+       }
+
+       console.log("Použití let:");
+       for (let j = 0; j < 3; j++) {
+           setTimeout(() => console.log(j), 100);
+       }
+   }
+
+   demonstraceVarLet();
+   // Výstup s var: 3, 3, 3
+   // Výstup s let: 0, 1, 2
+   ```
+   </details>
+
+5. Vytvořte funkci, která demonstruje TDZ (Temporal Dead Zone) pro `let` a `const`.
+   
+   _<details><summary>Možné řešení</summary>_
+
+   ```javascript
+   function demonstraceTDZ() {
+       try {
+           console.log(letPromenna); // ReferenceError
+       } catch (e) {
+           console.log("Chyba přístupu k let proměnné před deklarací:", e.message);
+       }
+       
+       let letPromenna = "Jsem let proměnná";
+       
+       try {
+           console.log(constPromenna); // ReferenceError
+       } catch (e) {
+           console.log("Chyba přístupu ke const proměnné před deklarací:", e.message);
+       }
+       
+       const constPromenna = "Jsem const proměnná";
+       
+       console.log(letPromenna); // "Jsem let proměnná"
+       console.log(constPromenna); // "Jsem const proměnná"
+   }
+
+   demonstraceTDZ();
+   ```
+   </details>
+
+6. Napište funkci, která demonstruje rozdíl mezi lokálním a globálním rozsahem proměnných.
+   
+   _<details><summary>Možné řešení</summary>_
+
+   ```javascript
+   let globalniPromenna = "Jsem globální";
+
+   function demonstraceRozsahu() {
+       let lokalniPromenna = "Jsem lokální";
+       
+       console.log("Uvnitř funkce:");
+       console.log("Globální proměnná:", globalniPromenna);
+       console.log("Lokální proměnná:", lokalniPromenna);
+       
+       if (true) {
+           let blokovaPromenna = "Jsem bloková";
+           var funkcniPromenna = "Jsem funkční";
+           console.log("Uvnitř bloku:");
+           console.log("Bloková proměnná:", blokovaPromenna);
+           console.log("Funkční proměnná:", funkcniPromenna);
+       }
+       
+       console.log("Po bloku:");
+       console.log("Funkční proměnná:", funkcniPromenna);
+       try {
+           console.log("Bloková proměnná:", blokovaPromenna);
+       } catch (e) {
+           console.log("Chyba přístupu k blokové proměnné:", e.message);
+       }
+   }
+
+   demonstraceRozsahu();
+   console.log("Mimo funkci:");
+   console.log("Globální proměnná:", globalniPromenna);
+   try {
+       console.log("Lokální proměnná:", lokalniPromenna);
+   } catch (e) {
+       console.log("Chyba přístupu k lokální proměnné:", e.message);
+   }
+   ```
+   </details>
 
 [**CheatSheet - Variables**](cheatsheet.md#proměnné-variables)
 
