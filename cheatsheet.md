@@ -3,6 +3,7 @@
 1. [Začátečnická úroveň (Beginner Level)](#začátečnická-úroveň-beginner-level)
    - [Datové typy (Data Types)](#datové-typy-data-types)
    - [Proměnné (Variables)](#proměnné-variables)
+   - [Operátory (Operators)](#operátory-operators) 
 
 ## Začátečnická úroveň (Beginner Level)
 
@@ -184,3 +185,99 @@ window.globalVar = "I'm also explicitly global";  // In browser environment
 
 
 [**ReferenceBook - Variables**](README.md#proměnné-variables)
+
+
+### Operátory (Operators)
+
+```javascript
+// Basic Arithmetic Operators
+5 + 3;                    // 8            | Addition (+)
+10 - 4;                   // 6            | Subtraction (-)
+4 * 2;                    // 8            | Multiplication (*)
+20 / 5;                   // 4            | Division (/)
+17 % 5;                   // 2            | Modulo (%)
+
+// Assignment Operators
+x = 10;                   // 10           | Assignment (=)
+x += 3;                   // 13           | Addition assignment (+=)
+x -= 2;                   // 11           | Subtraction assignment (-=)
+x *= 2;                   // 22           | Multiplication assignment (*=)
+x /= 2;                   // 11           | Division assignment (/=)
+
+// Comparison Operators
+5 == "5";                 // true         | Equality (==)
+5 === "5";                // false        | Strict equality (===)
+5 != "6";                 // true         | Inequality (!=)
+5 !== "5";                // true         | Strict inequality (!==)
+10 > 5;                   // true         | Greater than (>)
+3 < 7;                    // true         | Less than (<)
+5 >= 5;                   // true         | Greater than or equal to (>=)
+4 <= 4;                   // true         | Less than or equal to (<=)
+
+// Logical Operators
+true && true;             // true         | Logical AND (&&)
+false || true;            // true         | Logical OR (||)
+!true;                    // false        | Logical NOT (!)
+
+// Unary Operators
+let y = 5;
+++y;                      // 6            | Increment (++)
+--y;                      // 5            | Decrement (--)
++"3";                     // 3            | Unary plus (+)
+-5;                       // -5           | Unary minus (-)
+
+// Bitwise Operators
+5 & 3;                    // 1            | Bitwise AND (&)
+5 | 3;                    // 7            | Bitwise OR (|)
+5 ^ 3;                    // 6            | Bitwise XOR (^)
+~5;                       // -6           | Bitwise NOT (~)
+5 << 1;                   // 10           | Left shift (<<)
+5 >> 1;                   // 2            | Sign-propagating right shift (>>)
+-5 >>> 1;                 // 2147483645   | Zero-fill right shift (>>>)
+
+// Ternary Operator
+let age = 20;
+age >= 18 ? "Adult" : "Minor"; // "Adult"     | Ternary (condition ? expr1 : expr2)
+
+// Optional Chaining Operator
+let obj = {prop: {method: () => "Hello"}};
+obj?.prop?.method?.();    // "Hello"      | Optional chaining (?.)
+
+// Nullish Coalescing Operator
+null ?? "default";        // "default"    | Nullish coalescing (??)
+
+// typeof Operator
+typeof 42;                // "number"     | typeof
+
+// Spread Operator
+let arr = [1, 2, 3];
+console.log(...arr);      // 1 2 3        | Spread (...)
+
+// in Operator
+'name' in {name: 'John'}; // true         | in
+
+// instanceof Operator
+[] instanceof Array;      // true         | instanceof
+
+// delete Operator
+let obj2 = {x: 1, y: 2};
+delete obj2.x;            // true         | delete
+
+// new Operator
+new Date();               // [Date object]| new
+
+// void Operator
+void 0;                   // undefined    | void
+
+// yield Operator (inside generator function)
+function* gen() { yield 1; }
+gen().next().value;       // 1            | yield
+
+// await Operator (inside async function)
+async function fetchData() {
+  let response = await fetch('https://api.example.com/data');
+  // [Response object] | await
+}
+```
+
+[**ReferenceBook - Operators**](README.md#operátory-operators)

@@ -5,6 +5,7 @@
 1. [Začátečnická úroveň (Beginner Level)](#začátečnická-úroveň-beginner-level)
    - [Datové typy (Data Types)](#datové-typy-data-types)
    - [Proměnné (Variables)](#proměnné-variables)
+   - [Operátory (Operators)](#operátory-operators) 
 
 ## Začátečnická úroveň (Beginner Level)
 
@@ -562,8 +563,7 @@ Cvičení jsou seřazena od nejjednodušších po nejsložitější:
 
 1. Deklarujte `const` proměnnou pro Vaše jméno a `let` proměnnou pro Váš věk.
    
-   <details>
-   <summary>Řešení</summary>
+- _<details><summary>Možné řešení</summary>_
 
    ```javascript
    const jmeno = "Jan Novák";
@@ -573,8 +573,7 @@ Cvičení jsou seřazena od nejjednodušších po nejsložitější:
 
 2. Zkuste přeřadit `const` proměnnou. Co se stane?
    
-   <details>
-   <summary>Řešení</summary>
+- _<details><summary>Možné řešení</summary>_
 
    ```javascript
    const jmeno = "Karel Dravý";
@@ -584,8 +583,7 @@ Cvičení jsou seřazena od nejjednodušších po nejsložitější:
 
 3. Vytvořte objekt pomocí `const` a modifikujte jednu z jeho vlastností. Je to možné?
    
-   <details>
-   <summary>Řešení</summary>
+- _<details><summary>Možné řešení</summary>_
 
    ```javascript
    const osoba = {
@@ -696,5 +694,671 @@ Cvičení jsou seřazena od nejjednodušších po nejsložitější:
    </details>
 
 [**CheatSheet - Variables**](cheatsheet.md#proměnné-variables)
+
+[Zpět na obsah](#obsah-table-of-contents)
+
+### Operátory (Operators)
+
+JavaScript podporuje různé typy operátorů, které můžeme rozdělit do několika kategorií podle složitosti a funkce.
+
+#### Základní operátory
+
+1. **Aritmetické operátory (Arithmetic Operators):**
+   - Sčítání (`+`)
+     - **Popis**: Sčítá dva operandy.
+     - **Použití**: `operand1 + operand2`
+     - **Příklad**: 
+        ```javascript
+        let sum = 5 + 3; // 8
+        ```
+     - **Zajímavost**: Když se použije s řetězci, provádí konkatenaci.
+
+   - Odčítání (`-`)
+     - **Popis**: Odečítá druhý operand od prvního.
+     - **Použití**: `operand1 - operand2`
+     - **Příklad**: 
+        ```javascript
+        let difference = 10 - 3; // 7
+        ```
+     - **Zajímavost**: Lze použít jako unární operátor pro negaci čísla.
+
+   - Násobení (`*`)
+     - **Popis**: Násobí dva operandy.
+     - **Použití**: `operand1 * operand2`
+     - **Příklad**: 
+        ```javascript
+        let product = 4 * 2; // 8
+        ```
+     - **Zajímavost**: Při násobení řetězce číslem dochází k implicitní konverzi.
+
+   - Dělení (`/`)
+     - **Popis**: Dělí první operand druhým.
+     - **Použití**: `operand1 / operand2`
+     - **Příklad**: 
+        ```javascript
+        let quotient = 20 / 5; // 4
+        ```
+     - **Zajímavost**: Dělení nulou vrací `Infinity` nebo `-Infinity`.
+
+   - Modulo (zbytek po dělení) (`%`)
+     - **Popis**: Vrací zbytek po dělení prvního operandu druhým.
+     - **Použití**: `operand1 % operand2`
+     - **Příklad**: 
+        ```javascript
+        let remainder = 17 % 5; // 2
+        ```
+     - **Zajímavost**: Užitečné pro zjištění, zda je číslo sudé nebo liché.
+
+2. **Přiřazovací operátory (Assignment Operators):**
+   - Přiřazení (`=`)
+     - **Popis**: Přiřazuje hodnotu proměnné.
+     - **Použití**: `variable = value`
+     - **Příklad**: 
+        ```javascript
+        let x = 10;
+        ```
+     - **Zajímavost**: Vrací přiřazenou hodnotu, což umožňuje řetězení přiřazení.
+
+   - Přičtení a přiřazení (`+=`)
+     - **Popis**: Přičte hodnotu k proměnné a výsledek přiřadí proměnné.
+     - **Použití**: `variable += value`
+     - **Příklad**: 
+        ```javascript
+        let x = 5; 
+        x += 3; // x je nyní 8
+        ```
+     - **Zajímavost**: Funguje i s řetězci pro konkatenaci.
+
+   - Odečtení a přiřazení (`-=`)
+     - **Popis**: Odečte hodnotu od proměnné a výsledek přiřadí proměnné.
+     - **Použití**: `variable -= value`
+     - **Příklad**: 
+        ```javascript
+        let x = 10; 
+        x -= 4; // x je nyní 6
+        ```
+     - **Zajímavost**: Při použití s řetězci dochází k implicitní konverzi na číslo.
+
+   - Násobení a přiřazení (`*=`)
+     - **Popis**: Vynásobí proměnnou hodnotou a výsledek přiřadí proměnné.
+     - **Použití**: `variable *= value`
+     - **Příklad**: 
+        ```javascript
+        let x = 3; 
+        x *= 4; // x je nyní 12
+        ```
+     - **Zajímavost**: Může vést k neočekávaným výsledkům při míchání typů.
+
+   - Dělení a přiřazení (`/=`)
+     - **Popis**: Vydělí proměnnou hodnotou a výsledek přiřadí proměnné.
+     - **Použití**: `variable /= value`
+     - **Příklad**: 
+        ```javascript
+        let x = 15; 
+        x /= 3; // x je nyní 5
+        ```
+     - **Zajímavost**: Při dělení nulou nastaví proměnnou na `Infinity` nebo `-Infinity`.
+
+3. **Porovnávací operátory (Comparison Operators):**
+   - Rovno (`==`)
+     - **Popis**: Porovnává dva operandy na rovnost s implicitní konverzí typů.
+     - **Použití**: `operand1 == operand2`
+     - **Příklad**: 
+        ```javascript
+        console.log(5 == "5"); // true
+        ```
+     - **Zajímavost**: Může vést k neočekávaným výsledkům kvůli implicitní konverzi.
+
+   - Striktně rovno (`===`)
+     - **Popis**: Porovnává dva operandy na rovnost bez konverze typů.
+     - **Použití**: `operand1 === operand2`
+     - **Příklad**: 
+        ```javascript
+        console.log(5 === "5"); // false
+        ```
+     - **Zajímavost**: Doporučuje se pro většinu porovnání kvůli přesnějším výsledkům.
+
+   - Nerovno (`!=`)
+     - **Popis**: Kontroluje, zda dva operandy nejsou rovny, s implicitní konverzí typů.
+     - **Použití**: `operand1 != operand2`
+     - **Příklad**: 
+        ```javascript
+        console.log(5 != "5"); // false
+        console.log(5 != "6"); // true
+        ```
+     - **Zajímavost**: Podobně jako `==`, může vést k neočekávaným výsledkům.
+
+   - Striktně nerovno (`!==`)
+     - **Popis**: Kontroluje, zda dva operandy nejsou rovny, bez konverze typů.
+     - **Použití**: `operand1 !== operand2`
+     - **Příklad**: 
+        ```javascript
+        console.log(5 !== "5"); // true
+        ```
+     - **Zajímavost**: Preferovaná volba pro kontrolu nerovnosti.
+
+   - Větší než (`>`)
+     - **Popis**: Kontroluje, zda je první operand větší než druhý.
+     - **Použití**: `operand1 > operand2`
+     - **Příklad**: 
+        ```javascript
+        console.log(10 > 5); // true
+        ```
+     - **Zajímavost**: Při porovnávání řetězců se používá lexikografické pořadí.
+
+   - Menší než (`<`)
+     - **Popis**: Kontroluje, zda je první operand menší než druhý.
+     - **Použití**: `operand1 < operand2`
+     - **Příklad**: 
+        ```javascript
+        console.log(3 < 7); // true
+        ```
+     - **Zajímavost**: Může být použito k porovnání dat.
+
+   - Větší nebo rovno (`>=`)
+     - **Popis**: Kontroluje, zda je první operand větší nebo roven druhému.
+     - **Použití**: `operand1 >= operand2`
+     - **Příklad**: 
+        ```javascript
+        console.log(5 >= 5); // true
+        ```
+     - **Zajímavost**: Užitečné pro kontrolu rozsahů hodnot.
+
+   - Menší nebo rovno (`<=`)
+     - **Popis**: Kontroluje, zda je první operand menší nebo roven druhému.
+     - **Použití**: `operand1 <= operand2`
+     - **Příklad**: 
+        ```javascript
+        console.log(4 <= 4); // true
+        ```
+     - **Zajímavost**: Často se používá v cyklech a podmínkách.
+
+4. **Logické operátory (Logical Operators):**
+   - AND (`&&`)
+     - **Popis**: Vrací `true`, pokud oba operandy jsou pravdivé.
+     - **Použití**: `operand1 && operand2`
+     - **Příklad**: 
+        ```javascript
+        console.log(true && true); // true
+        ```
+     - **Zajímavost**: Vyhodnocuje druhý operand pouze pokud první je pravdivý (short-circuit evaluation).
+
+   - OR (`||`)
+     - **Popis**: Vrací `true`, pokud alespoň jeden z operandů je pravdivý.
+     - **Použití**: `operand1 || operand2`
+     - **Příklad**: 
+        ```javascript
+        console.log(false || true); // true
+        ```
+     - **Zajímavost**: Často se používá pro nastavení výchozích hodnot.
+
+   - NOT (`!`)
+     - **Popis**: Neguje (obrací) logickou hodnotu operandu.
+     - **Použití**: `!operand`
+     - **Příklad**: 
+        ```javascript
+        console.log(!true); // false
+        ```
+     - **Zajímavost**: Dvojitá negace (`!!`) se často používá pro konverzi na boolean.
+
+#### Pokročilé operátory
+
+5. **Unární operátory (Unary Operators):**
+   - Inkrementace (`++`)
+     - **Popis**: Zvýší hodnotu operandu o 1.
+     - **Použití**: `++variable` nebo `variable++`
+     - **Příklad**: 
+        ```javascript
+        let x = 5; 
+        x++; 
+        console.log(x); // 6
+        ```
+     - **Zajímavost**: Prefiková forma (`++x`) vrací novou hodnotu, postfixová (`x++`) vrací původní hodnotu.
+
+   - Dekrementace (`--`)
+     - **Popis**: Sníží hodnotu operandu o 1.
+     - **Použití**: `--variable` nebo `variable--`
+     - **Příklad**: 
+        ```javascript
+        let y = 8; 
+        y--; 
+        console.log(y); // 7
+        ```
+     - **Zajímavost**: Stejně jako inkrementace má prefikovou a postfixovou formu.
+
+   - Unární plus (`+`)
+     - **Popis**: Převádí operand na číslo.
+     - **Použití**: `+operand`
+     - **Příklad**: 
+        ```javascript
+        console.log(+"3"); // 3
+        ```
+     - **Zajímavost**: Může být použito pro rychlou konverzi řetězce na číslo.
+
+   - Unární mínus (`-`)
+     - **Popis**: Neguje operand.
+     - **Použití**: `-operand`
+     - **Příklad**: 
+        ```javascript
+        console.log(-5); // -5
+        ```
+     - **Zajímavost**: Aplikace na nečíselnou hodnotu nejprve provede konverzi na číslo.
+
+**Bitové operátory (Bitwise Operators):**
+
+- AND (`&`)
+  - **Popis**: Provádí bitovou operaci AND na každém bitu operandů.
+  - **Použití**: `operand1 & operand2`
+  - **Příklad**: 
+    ```javascript
+    let x = 5;      // 00000000000000000000000000000101
+    let y = 3;      // 00000000000000000000000000000011
+    let z = x & y;  // 00000000000000000000000000000001
+    console.log(z); // 1
+    ```
+  - **Zajímavost**: Často se používá pro bitové masky.
+
+- OR (`|`)
+  - **Popis**: Provádí bitovou operaci OR na každém bitu operandů.
+  - **Použití**: `operand1 | operand2`
+  - **Příklad**: 
+    ```javascript
+    let x = 5;      // 00000000000000000000000000000101
+    let y = 3;      // 00000000000000000000000000000011
+    let z = x | y;  // 00000000000000000000000000000111
+    console.log(z); // 7
+    ```
+  - **Zajímavost**: Užitečné pro kombinování bitových příznaků.
+
+- XOR (`^`)
+  - **Popis**: Provádí bitovou operaci XOR na každém bitu operandů.
+  - **Použití**: `operand1 ^ operand2`
+  - **Příklad**: 
+    ```javascript
+    let x = 5;      // 00000000000000000000000000000101
+    let y = 3;      // 00000000000000000000000000000011
+    let z = x ^ y;  // 00000000000000000000000000000110
+    console.log(z); // 6
+    ```
+  - **Zajímavost**: Může být použito pro jednoduché šifrování.
+
+- NOT (`~`)
+  - **Popis**: Invertuje bity operandu.
+  - **Použití**: `~operand`
+  - **Příklad**: 
+    ```javascript
+    let x = 5;      // 00000000000000000000000000000101
+    let y = ~x;     // 11111111111111111111111111111010
+    let z = y;      // 11111111111111111111111111111010
+    console.log(z); // -6
+    ```
+  - **Zajímavost**: Výsledek je vždy -(x+1) pro vstup x.
+
+- Bitový posun vlevo (`<<`)
+  - **Popis**: Posouvá bity prvního operandu vlevo o počet pozic specifikovaný druhým operandem.
+  - **Použití**: `operand1 << operand2`
+  - **Příklad**: 
+    ```javascript
+    let x = 5;      // 00000000000000000000000000000101
+    let y = 1;
+    let z = x << y; // 00000000000000000000000000001010
+    console.log(z); // 10
+    ```
+  - **Zajímavost**: Ekvivalentní násobení mocninou 2.
+
+- Bitový posun vpravo (`>>`)
+  - **Popis**: Posouvá bity prvního operandu vpravo o počet pozic specifikovaný druhým operandem.
+  - **Použití**: `operand1 >> operand2`
+  - **Příklad**: 
+    ```javascript
+    let x = 5;      // 00000000000000000000000000000101
+    let y = 1;
+    let z = x >> y; // 00000000000000000000000000000010
+    console.log(z); // 2
+    ```
+  - **Zajímavost**: Zachovává znaménko (sign-propagating).
+
+- Bitový posun vpravo s doplněním nulami (`>>>`)
+  - **Popis**: Posouvá bity prvního operandu vpravo o počet pozic specifikovaný druhým operandem, doplňuje nuly zleva.
+  - **Použití**: `operand1 >>> operand2`
+  - **Příklad**: 
+    ```javascript
+    let x = -5;     // 11111111111111111111111111111011
+    let y = 1;
+    let z = x >>> y;// 01111111111111111111111111111101
+    console.log(z); // 2147483645
+    ```
+  - **Zajímavost**: Vždy vrací nezáporný výsledek.
+
+7. **Ternární (podmínkový) operátor (Ternary Operator):**
+   - **Popis**: Podmíněně vrací jednu ze dvou hodnot na základě podmínky.
+   - **Použití**: `podmínka ? výraz1 : výraz2`
+   - **Příklad**: 
+        ```javascript
+        let status = (age >= 18) ? "dospělý" : "nezletilý";
+        ```
+   - **Zajímavost**: Jediný operátor v JavaScriptu, který přijímá tři operandy.
+
+8. **Operátor řetězení volání (Optional Chaining Operator):**
+   - **Popis**: Umožňuje číst hodnotu z vnořené vlastnosti objektu bez nutnosti explicitně ověřovat každou referenci v řetězci.
+   - **Použití**: `obj?.prop`, `obj?.[expr]`, `arr?.[index]`, `func?.(args)`
+   - **Příklad**: 
+        ```javascript
+        let neexistujiciMetoda = obj?.neexistujiciMetoda?.();
+        ```
+   - **Zajímavost**: Vrací `undefined`, pokud je jakákoli část řetězce `null` nebo `undefined`.
+
+9. **Operátor nulového sloučení (Nullish Coalescing Operator):**
+   - **Popis**: Vrací pravý operand, pokud levý operand je `null` nebo `undefined`, jinak vrací levý operand.
+   - **Použití**: `levyOperand ?? pravyOperand`
+   - **Příklad**: 
+        ```javascript
+        let jmeno = uzivatel.jmeno ?? "Anonymní";
+        ```
+   - **Zajímavost**: Na rozdíl od `||`, nebere v úvahu falsy hodnoty jako `0` nebo `""`.
+
+10. **Operátor typu (typeof Operator):**
+    - **Popis**: Vrací řetězec indikující typ operandu.
+    - **Použití**: `typeof operand`
+    - **Příklad**: 
+        ```javascript
+        console.log(typeof 42); // "number"
+        ```
+    - **Zajímavost**: Vrací "object" pro `null`, což je známá chyba v jazyce.
+
+#### Speciální operátory
+
+11. **Operátor rozkladu (Spread Operator):**
+    - **Popis**: Rozkládá iterovatelný objekt na jednotlivé elementy.
+    - **Použití**: `...iterovatelnyObjekt`
+    - **Příklad**: 
+        ```javascript
+        let arr = [1, 2, 3]; console.log(...arr); // 1 2 3
+        ```
+    - **Zajímavost**: Může být použit pro kopírování polí nebo objektů.
+
+12. **Operátor zbytku (Rest Operator):**
+    - **Popis**: Shromažďuje zbývající elementy do pole.
+    - **Použití**: `function(a, ...zbytek) {}`
+    - **Příklad**: 
+        ```javascript
+        function sum(...theArgs) {
+            let total = 0;
+            for (const arg of theArgs) {
+                total += arg;
+            }
+            return total;
+        }
+
+        console.log(sum(1, 2, 3)); // 6
+
+        console.log(sum(1, 2, 3, 4)); // 10
+
+        ```
+    - **Zajímavost**: Umožňuje funkci přijmout libovolný počet argumentů.
+
+13. **Operátor `in`:**
+    - **Popis**: Kontroluje, zda specifikovaná vlastnost existuje v objektu.
+    - **Použití**: `propname in object`
+    - **Příklad**: 
+        ```javascript
+        console.log('name' in {name: 'John'}); // true
+        ```
+    - **Zajímavost**: Funguje také pro vlastnosti zděděné z prototypu.
+
+14. **Operátor `instanceof`:**
+    - **Popis**: Testuje, zda objekt je instancí specifikovaného typu objektu.
+    - **Použití**: `object instanceof constructor`
+    - **Příklad**: 
+        ```javascript
+        console.log([] instanceof Array); // true
+        ```
+    - **Zajímavost**: Kontroluje celý prototypový řetězec objektu.
+
+15. **Operátor `delete`:**
+    - **Popis**: Odstraňuje vlastnost z objektu.
+    - **Použití**: `delete object.property` nebo `delete object['property']`
+    - **Příklad**: 
+        ```javascript
+        let obj = {x: 1, y: 2}; delete obj.x; console.log(obj); // {y: 2}
+        ```
+    - **Zajímavost**: Neovlivňuje vlastnosti zděděné z prototypu.
+
+#### Klíčová slova související s operátory
+
+- `new`:
+  - **Popis**: Vytváří novou instanci objektu.
+  - **Použití**: `new Constructor()`
+  - **Příklad**: 
+    ```javascript
+    let date = new Date();
+    ```
+  - **Zajímavost**: Může být použito bez závorek pro konstruktory bez parametrů.
+
+- `void`:
+  - **Popis**: Vyhodnocuje výraz a vrací `undefined`.
+  - **Použití**: `void expression`
+  - **Příklad**: 
+    ```javascript
+    void(0)
+    ```
+     nebo 
+    ```javascript
+    void 0
+    ```
+  - **Zajímavost**: Často se používá v odkazech pro zabránění navigace: `<a href="javascript:void(0);">Klikni</a>`
+
+- `yield`:
+  - **Popis**: Pozastavuje a obnovuje generátorovou funkci.
+  - **Použití**: `yield [expression]`
+  - **Příklad**: 
+    ```javascript
+    function* generator() {
+      yield 1;
+      yield 2;
+    }
+    ```
+  - **Zajímavost**: Může být použito pro vytvoření nekonečných sekvencí.
+
+- `await`:
+  - **Popis**: Pozastavuje asynchronní funkci do dokončení Promise.
+  - **Použití**: `let result = await promise;`
+  - **Příklad**: 
+    ```javascript
+    async function fetchData() {
+      let response = await fetch('https://api.example.com/data');
+      let data = await response.json();
+      return data;
+    }
+    ```
+  - **Zajímavost**: Může být použito pouze uvnitř async funkcí.
+
+#### Příklady:
+
+```javascript
+// Základní aritmetické operace
+let sum = 5 + 3;  // 8
+let product = 4 * 2;  // 8
+
+// Porovnávání
+console.log(5 == "5");  // true (volná rovnost)
+console.log(5 === "5");  // false (striktní rovnost)
+
+// Logické operátory
+let isAdult = age >= 18 && hasLicense;
+
+// Přiřazení
+let x = 10;
+x += 5;  // x je nyní 15
+
+// Ternární operátor
+let status = (age >= 18) ? "dospělý" : "nezletilý";
+
+// Bitové operace
+let flags = 0b1010;
+let mask = 0b1100;
+let result = flags & mask;  // 0b1000
+
+// Operátor řetězení volání
+let neexistujiciMetoda = obj?.neexistujiciMetoda?.();
+
+// Operátor nulového sloučení
+let jmeno = uzivatel.jmeno ?? "Anonymní";
+
+// Spread operátor
+let arr1 = [1, 2, 3];
+let arr2 = [...arr1, 4, 5];  // [1, 2, 3, 4, 5]
+
+// Rest operátor
+function sum(...numbers) {
+  return numbers.reduce((a, b) => a + b, 0);
+}
+console.log(sum(1, 2, 3, 4));  // 10
+```
+
+#### Cvičení:
+
+1. **Základní:** Napište funkci, která vezme dvě čísla a vrátí jejich součet, rozdíl, součin a podíl.
+
+- _<details><summary>Možné řešení</summary>_
+
+    ```javascript
+    function basicMath(a, b) {
+    return {
+        součet: a + b,
+        rozdíl: a - b,
+        součin: a * b,
+        podíl: a / b
+    };
+    }
+
+    console.log(basicMath(10, 5));
+    // Output: { součet: 15, rozdíl: 5, součin: 50, podíl: 2 }
+    ```
+
+</details>
+
+2. **Základní:** Vytvořte program, který zkontroluje, zda je číslo sudé nebo liché pomocí operátoru modulo.
+
+- _<details><summary>Možné řešení</summary>_
+
+    ```javascript
+    function isEven(number) {
+    return number % 2 === 0 ? "sudé" : "liché";
+    }
+
+    console.log(isEven(4)); // "sudé"
+    console.log(isEven(7)); // "liché"
+    ```
+
+</details>
+
+3. **Střední:** Použijte logický operátor AND ke kontrole, zda je osoba způsobilá volit (18 let nebo starší) a má platný průkaz totožnosti.
+
+- _<details><summary>Možné řešení</summary>_
+
+    ```javascript
+    function canVote(age, hasValidID) {
+    return age >= 18 && hasValidID;
+    }
+
+    console.log(canVote(20, true));  // true
+    console.log(canVote(17, true));  // false
+    console.log(canVote(18, false)); // false
+    ```
+
+</details>
+
+4. **Střední:** Napište funkci, která použije bitové operátory k nastavení, vymazání a kontrole specifického bitu v čísle.
+
+- _<details><summary>Možné řešení</summary>_
+
+    ```javascript
+    function bitOperations(n, bitPosition) {
+    // Nastavení bitu
+    function setBit(n) {
+        return n | (1 << bitPosition);
+    }
+
+    // Vymazání bitu
+    function clearBit(n) {
+        return n & ~(1 << bitPosition);
+    }
+
+    // Kontrola bitu
+    function checkBit(n) {
+        return !!(n & (1 << bitPosition));
+    }
+
+    return {
+        original: n,
+        setBit: setBit(n),
+        clearBit: clearBit(n),
+        isBitSet: checkBit(n)
+    };
+    }
+
+    console.log(bitOperations(5, 1));
+    // Output: { original: 5, setBit: 7, clearBit: 5, isBitSet: true }
+    ```
+
+</details>
+
+5. **Pokročilé:** Vytvořte funkci, která použije ternární operátor a operátor nulového sloučení k formátování uživatelského vstupu. Funkce by měla přijmout objekt s vlastnostmi `jmeno` a `vek`, a vrátit řetězec ve formátu "Jméno: [jméno], Věk: [věk]". Pokud některá vlastnost chybí, použijte výchozí hodnoty.
+
+- _<details><summary>Možné řešení</summary>_
+
+    ```javascript
+    function formatUserInput(user) {
+    const defaultName = "Neznámý";
+    const defaultAge = "Neuvedeno";
+
+    const name = user?.jmeno ?? defaultName;
+    const age = user?.vek ?? defaultAge;
+
+    return `Jméno: ${name}, Věk: ${age === "Neuvedeno" ? age : age + " let"}`;
+    }
+
+    console.log(formatUserInput({jmeno: "Jan", vek: 30})); 
+    // "Jméno: Jan, Věk: 30 let"
+    console.log(formatUserInput({jmeno: "Anna"})); 
+    // "Jméno: Anna, Věk: Neuvedeno"
+    console.log(formatUserInput({})); 
+    // "Jméno: Neznámý, Věk: Neuvedeno"
+    ```
+
+</details>
+
+6. **Pokročilé:** Implementujte jednoduchou kalkulačku pomocí operátoru `switch` a funkce vyššího řádu. Kalkulačka by měla podporovat základní operace (+, -, *, /) a umožnit uživateli vybrat operaci a zadat dvě čísla.
+
+- _<details><summary>Možné řešení</summary>_
+
+    ```javascript
+    function calculator(operation) {
+    switch(operation) {
+        case '+': return (a, b) => a + b;
+        case '-': return (a, b) => a - b;
+        case '*': return (a, b) => a * b;
+        case '/': return (a, b) => b !== 0 ? a / b : "Nelze dělit nulou";
+        default: return () => "Neplatná operace";
+    }
+    }
+
+    function calculate(operation, a, b) {
+    const operationFunc = calculator(operation);
+    return operationFunc(a, b);
+    }
+
+    console.log(calculate('+', 5, 3)); // 8
+    console.log(calculate('-', 10, 4)); // 6
+    console.log(calculate('*', 2, 6)); // 12
+    console.log(calculate('/', 15, 3)); // 5
+    console.log(calculate('/', 10, 0)); // "Nelze dělit nulou"
+    console.log(calculate('%', 10, 3)); // "Neplatná operace"
+    ```
+
+</details>
+
+[**CheatSheet - Operators**](cheatsheet.md#operátory-operators)
 
 [Zpět na obsah](#obsah-table-of-contents)
