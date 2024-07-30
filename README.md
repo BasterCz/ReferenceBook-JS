@@ -3,9 +3,10 @@
 ## Obsah (Table of Contents)
 
 1. [Začátečnická úroveň (Beginner Level)](#začátečnická-úroveň-beginner-level)
-   - [Datové typy (Data Types)](#datové-typy-data-types)
-   - [Proměnné (Variables)](#proměnné-variables)
-   - [Operátory (Operators)](#operátory-operators) 
+    - [Datové typy (Data Types)](#datové-typy-data-types)
+    - [Proměnné (Variables)](#proměnné-variables)
+    - [Operátory (Operators)](#operátory-operators) 
+    - [Řídicí struktura (Control Flow)](#řídicí-struktura-control-flow)
 
 ## Začátečnická úroveň (Beginner Level)
 
@@ -1360,5 +1361,423 @@ console.log(sum(1, 2, 3, 4));  // 10
 </details>
 
 [**CheatSheet - Operators**](cheatsheet.md#operátory-operators)
+
+[Zpět na obsah](#obsah-table-of-contents)
+
+### Řídicí struktura (Control Flow)
+
+Řídicí struktury (strukturované příkazy) určují pořadí, v jakém je kód vykonáván. Tyto příkazy umožňují programátorům vytvářet logiku, rozhodovat na základě podmínek a opakovat bloky kódu.
+
+#### Základní strukturované příkazy
+
+1. **`if...else` (Podmínkový příkaz)**
+   - **Popis**: Provádí různé bloky kódu na základě splnění podmínky.
+   - **Použití**: Rozhodování mezi dvěma nebo více možnostmi.
+   - **Příklad**:
+     ```javascript
+     let vek = 18;
+
+     if (vek >= 18) {
+         console.log("Dospělý");
+     } 
+     else {
+         console.log("Nezletilý");
+     }
+     // Dospělý
+     ```
+   - **Zajímavost**: Lze řetězit více podmínek pomocí `else if`.
+     ```javascript
+      let vek = 16;
+
+      if (vek >= 18) {
+          console.log("Dospělý");
+      } 
+      else if (vek >= 15) {
+          console.log("Zodpovědný");
+      } 
+      else {
+          console.log("Nezletilý");
+      }
+      // Zodpovědný
+     ```
+
+2. **`for` (Cyklus s pevným počtem opakování)**
+   - **Popis**: Opakuje blok kódu specifikovaný počet krát.
+   - **Použití**: Iterace přes pole, generování sekvencí.
+   - **Příklad**:
+     ```javascript
+     for (let i = 0; i < 5; i++) {
+         console.log(i);
+     }
+     // 0
+     // 1
+     // 2
+     // 3
+     // 4
+     ```
+   - **Zajímavost**: Lze použít `break` pro předčasné ukončení cyklu.
+        ```javascript
+        for (let i = 0; i < 5; i++) {
+            if(i > 3) {
+                break;
+            }
+            console.log(i);
+        }
+        // 0
+        // 1
+        // 2
+        // 3
+        ```
+
+3. **`while` (Cyklus s podmínkou na začátku)**
+   - **Popis**: Opakuje blok kódu, dokud je podmínka pravdivá.
+   - **Použití**: Situace, kdy nevíme předem, kolikrát se má cyklus opakovat.
+   - **Příklad**:
+     ```javascript
+     let i = 0;
+     while (i < 5) {
+         console.log(i);
+         i++;
+     }
+     // 0
+     // 1
+     // 2
+     // 3
+     // 4
+     ```
+   - **Zajímavost**: Pokud podmínka není nikdy splněna, kód uvnitř cyklu se nikdy neprovede.
+        ```javascript
+        let i = 0;
+        while (i > 5) {
+            console.log(i);
+            i++;
+        }
+        // No output
+        ```
+
+#### Středně pokročilé strukturované příkazy
+
+4. **`switch` (Vícecestné větvení)**
+   - **Popis**: Porovnává hodnotu s více případy a provádí odpovídající kód.
+   - **Použití**: Když máme více možných hodnot pro jednu proměnnou.
+   - **Příklad**:
+     ```javascript
+     let fruit = "Apple";
+     switch (fruit) {
+         case "Apple":
+             console.log("jablko");
+             break;
+         case "Banana":
+             console.log("banán");
+             break;
+         default:
+             console.log("Neznámé ovoce");
+     }
+     // jablko
+     ```
+   - **Zajímavost**: Bez `break` se provádění "propadne" do dalšího case¹.
+        ```javascript
+        switch (fruit) {
+            case "Apple":
+            case "Pear":
+                console.log("It's a pome fruit");
+                break;
+            case "Banana":
+            case "Mango":
+                console.log("It's a tropical fruit");
+                break;
+            default:
+                console.log("Unknown fruit type");
+        }
+        ```
+
+5. **`do...while` (Cyklus s podmínkou na konci)**
+   - **Popis**: Podobný `while`, ale vždy se provede alespoň jednou.
+   - **Použití**: Když potřebujeme zajistit, že se kód provede alespoň jednou.
+   - **Příklad**:
+     ```javascript
+     let i = 0;
+     do {
+         i++;
+         console.log(i);
+     } while (i < 5);
+     // 1
+     // 2
+     // 3
+     // 4
+     // 5
+     ```
+   - **Zajímavost**: Užitečné pro validaci uživatelského vstupu.
+
+#### Pokročilé strukturované příkazy
+
+6. **`for...of` (Iterace přes *hodnoty*)** - ITERACE
+   - **Popis**: Iteruje přes hodnoty iterovatelných objektů (např. pole, řetězce).
+   - **Použití**: Když potřebujeme pracovat s hodnotami, ale ne s indexy.
+   - **Příklad**:
+     ```javascript
+     let fruits = ["jablko", "banán", "pomeranč"];
+     for (let fruit of fruits) {
+         console.log(fruit);
+     }
+     // jablko
+     // banán
+     // pomeranč
+     ```
+   - **Zajímavost**: Funguje i s novými datovými strukturami jako `Set` a `Map`.
+
+7. **`for...in` (Iterace přes *vlastnosti*)** - ENUMERACE
+   - **Popis**: Iteruje přes vlastnosti objektu.
+   - **Použití**: Když potřebujeme pracovat s klíči objektu.
+   - **Příklad**:
+     ```javascript
+     let person = {name: "Jan", age: 30, city: "Praha"};
+     for (let key in person) {
+         console.log(key + ": " + person[key]);
+     }
+     // name: Jan
+     // age: 30
+     // city: Praha
+     ```
+   - **Zajímavost**: Iteruje i přes zděděné vlastnosti².
+     ```javascript
+     const parent = { inherited: "I'm inherited" };
+
+     const child = Object.create(parent);
+     child.own = "I'm an own property";
+
+     // Iterate over all properties
+     for (let prop in child) {
+        if (child.hasOwnProperty(prop)) {
+            console.log("Own:", prop, child[prop]);
+        } else {
+            console.log("Inherited:", prop, child[prop]);
+        }
+     }
+     // Own: own I'm an own property
+     // Inherited: inherited I'm inherited
+     ```
+
+#### Další koncepty řídící struktury
+
+8. **`break` a `continue`**
+   - **Popis**: `break` ukončí celý cyklus, `continue` přeskočí zbytek aktuální iterace.
+   - **Použití**: Optimalizace cyklů, předčasné ukončení.
+   - **Příklad**:
+     ```javascript
+     for (let i = 0; i < 10; i++) {
+         if (i === 7) break;
+         if (i % 2 === 0) continue;
+         console.log(i);
+     }
+     // 1
+     // 3
+     // 5
+     ```
+   - **Zajímavost**: Lze použít s popiskem (label) pro vnořené cykly³.
+        ```javascript
+        outerLoop: for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                if (i === 1 && j === 1) {
+                    console.log("Skipping i=1, j=1");
+                    continue outerLoop;
+                }
+                console.log(`i=${i}, j=${j}`);
+            }
+        }
+        // i=0, j=0
+        // i=0, j=1
+        // i=0, j=2
+        // i=1, j=0
+        // Skipping i=1, j=1
+        // i=2, j=0
+        // i=2, j=1
+        // i=2, j=2
+        ```
+
+        ```javascript
+        outerLoop: for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                if (i === 1 && j === 1) {
+                    console.log("Breaking at i=1, j=1");
+                    break outerLoop;
+                }
+                console.log(`i=${i}, j=${j}`);
+            }
+        }
+        // i=0, j=0
+        // i=0, j=1
+        // i=0, j=2
+        // i=1, j=0
+        // Breaking at i=1, j=1
+        ```
+
+9. **`try...catch...finally` (Zachytávání výjimek)**
+   - **Popis**: Umožňuje zachytit a zpracovat chyby v kódu.
+   - **Použití**: Ošetření chyb, zajištění robustnosti kódu.
+   - **Příklad**:
+     ```javascript
+     try {
+         // Kód, který může vyhodit chybu
+         throw new Error("Něco se pokazilo");
+     } catch (error) {
+         console.log("Chyba:", error.message);
+     } finally {
+         console.log("Tento kód se provede vždy");
+     }
+     ```
+   - **Zajímavost**: `finally` blok se provede vždy, i když dojde k chybě.
+
+#### Cvičení:
+
+1. Napište program, který vypíše čísla od 1 do 100. Pro násobky 3 vypíše "Fizz" místo čísla. Pro násobky 5 vypsat "Buzz". Pro čísla, která jsou násobky jak 3, tak 5, vypsat "FizzBuzz".
+
+   <details>
+   <summary>Řešení</summary>
+
+   ```javascript
+   for (let i = 1; i <= 100; i++) {
+       if (i % 3 === 0 && i % 5 === 0) {
+           console.log("FizzBuzz");
+       } else if (i % 3 === 0) {
+           console.log("Fizz");
+       } else if (i % 5 === 0) {
+           console.log("Buzz");
+       } else {
+           console.log(i);
+       }
+   }
+   ```
+   </details>
+
+2. Vytvořit funkci, která vezme pole čísel a vrátí součet všech sudých čísel v poli pomocí cyklu for...of.
+
+   <details>
+   <summary>Řešení</summary>
+
+   ```javascript
+   function sumEvenNumbers(numbers) {
+       let sum = 0;
+       for (let num of numbers) {
+           if (num % 2 === 0) {
+               sum += num;
+           }
+       }
+       return sum;
+   }
+
+   console.log(sumEvenNumbers([1, 2, 3, 4, 5, 6])); // Výstup: 12
+   ```
+   </details>
+
+3. Implementovat jednoduchý kalkulátor pomocí příkazu switch, který může provádět sčítání, odčítání, násobení a dělení na základě vstupu uživatele.
+
+   <details>
+   <summary>Řešení</summary>
+
+   ```javascript
+   function calculator(a, b, operation) {
+       switch (operation) {
+           case '+':
+               return a + b;
+           case '-':
+               return a - b;
+           case '*':
+               return a * b;
+           case '/':
+               if (b !== 0) {
+                   return a / b;
+               } else {
+                   return "Nelze dělit nulou";
+               }
+           default:
+               return "Neplatná operace";
+       }
+   }
+
+   console.log(calculator(5, 3, '+')); // Výstup: 8
+   console.log(calculator(5, 3, '-')); // Výstup: 2
+   console.log(calculator(5, 3, '*')); // Výstup: 15
+   console.log(calculator(6, 2, '/')); // Výstup: 3
+   console.log(calculator(5, 0, '/')); // Výstup: Nelze dělit nulou
+   ```
+   </details>
+
+4. Napište funkci, která najde největší prvek v poli čísel pomocí cyklu while.
+
+   <details>
+   <summary>Řešení</summary>
+
+   ```javascript
+   function findMax(numbers) {
+       if (numbers.length === 0) return undefined;
+       
+       let max = numbers[0];
+       let i = 1;
+       while (i < numbers.length) {
+           if (numbers[i] > max) {
+               max = numbers[i];
+           }
+           i++;
+       }
+       return max;
+   }
+
+   console.log(findMax([3, 7, 2, 9, 1])); // Výstup: 9
+   ```
+   </details>
+
+5. Vytvořte funkci, která převede objekt na pole párů klíč-hodnota pomocí for...in cyklu.
+
+   <details>
+   <summary>Řešení</summary>
+
+   ```javascript
+   function objectToPairs(obj) {
+       let result = [];
+       for (let key in obj) {
+           if (obj.hasOwnProperty(key)) {
+               result.push([key, obj[key]]);
+           }
+       }
+       return result;
+   }
+
+   let person = {name: "Jan", age: 30, city: "Praha"};
+   console.log(objectToPairs(person));
+   // Výstup: [["name", "Jan"], ["age", 30], ["city", "Praha"]]
+   ```
+   </details>
+
+6. Napište funkci, která simuluje hod kostkou, dokud nepadne šestka. Použijte do...while cyklus a vraťte počet hodů.
+
+   <details>
+   <summary>Řešení</summary>
+
+   ```javascript
+   function rollUntilSix() {
+       let rolls = 0;
+       let result;
+       do {
+           result = Math.floor(Math.random() * 6) + 1;
+           rolls++;
+       } while (result !== 6);
+       return rolls;
+   }
+
+   console.log("Počet hodů do šestky:", rollUntilSix());
+   ```
+   </details>
+
+#### Poznámky:
+¹ **Propadnutí v switch**: Pokud se nepoužije `break`, kód "propadne" do dalšího case a pokračuje, dokud nenarazí na `break` nebo konec `switch`.
+
+² **Zděděné vlastnosti**: `for...in` cyklus iteruje i přes vlastnosti, které objekt zdědil od svého prototypu. Pro iteraci pouze přes vlastní vlastnosti objektu lze použít `Object.hasOwnProperty()` metodu.
+
+³ **Popisek (Label)**: Popisek (labels) v JavaScriptu umožňují označit cyklus nebo blok kódu a použít `break` nebo `continue` s tímto labelem pro ukončení nebo přeskočení označeného bloku.
+
+---
+
+[**CheatSheet - Control Flow**](cheatsheet.md#řídicí-struktura-control-flow)
 
 [Zpět na obsah](#obsah-table-of-contents)

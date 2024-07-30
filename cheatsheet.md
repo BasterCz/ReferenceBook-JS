@@ -1,9 +1,10 @@
 # Cheatsheet
 
 1. [Začátečnická úroveň (Beginner Level)](#začátečnická-úroveň-beginner-level)
-   - [Datové typy (Data Types)](#datové-typy-data-types)
-   - [Proměnné (Variables)](#proměnné-variables)
-   - [Operátory (Operators)](#operátory-operators) 
+    - [Datové typy (Data Types)](#datové-typy-data-types)
+    - [Proměnné (Variables)](#proměnné-variables)
+    - [Operátory (Operators)](#operátory-operators) 
+    - [Řídicí struktura (Control Flow)](#řídicí-struktura-control-flow)
 
 ## Začátečnická úroveň (Beginner Level)
 
@@ -281,3 +282,185 @@ async function fetchData() {
 ```
 
 [**ReferenceBook - Operators**](README.md#operátory-operators)
+
+### Řídicí struktura (Control Flow)
+
+```javascript
+
+// if - else
+let age = 18;
+if (age >= 18) {
+    console.log("Adult");
+} else {
+    console.log("Minor");
+}
+
+// if - else if - else
+if (age >= 18) {
+    console.log("Adult");
+} else if (age >= 15) {
+    console.log("Responsible");
+} else {
+    console.log("Minor");
+}
+
+// fi - else - Ternarní operátor ?: 
+let result = condition ? valueIfTrue : valueIfFalse;
+
+// for
+for (let i = 0; i < 5; i++) {
+    console.log(i);
+}
+
+// více inkrementální for
+for (let i = 0, j = 10; i < 5; i++, j--) {
+    console.log(i, j);
+}
+
+// infinite for
+for (;;) {
+
+    if (true) break;
+}
+
+// while
+let i = 0;
+while (i < 5) {
+    console.log(i);
+    i++;
+}
+
+// infinite while
+while (true) {
+
+    if (true) break;
+}
+
+// switch
+let fruit = "Apple";
+switch (fruit) {
+    case "Apple":
+        console.log("It's an apple");
+        break;
+    case "Banana":
+        console.log("It's a banana");
+        break;
+    default:
+        console.log("Unknown fruit");
+}
+
+// propadající se switch
+switch (fruit) {
+    case "Apple":
+    case "Pear":
+        console.log("It's a pome fruit");
+        break;
+    case "Banana":
+    case "Mango":
+        console.log("It's a tropical fruit");
+        break;
+    default:
+        console.log("Unknown fruit type");
+}
+
+// do - while
+let j = 0;
+do {
+    console.log(j);
+    j++;
+} while (j < 5);
+
+// do - while (vždy alespoň jednou)
+do {
+    userInput = getUserInput();
+} while (!isValidInput(userInput));
+
+// for - of (iterace)
+let fruits = ["apple", "banana", "orange"];
+for (let fruit of fruits) {
+    console.log(fruit);
+}
+
+// for - of (iterace stringu)
+let str = "Hello";
+for (let char of str) {
+    console.log(char);  // H e l l o
+}
+
+// for - of (iterace s indexem)
+for (let [index, value] of fruits.entries()) {
+    console.log(index, value);
+}
+
+// for - in (enumerace)
+let person = {name: "John", age: 30, city: "New York"};
+for (let key in person) {
+    console.log(key + ": " + person[key]);
+}
+
+// for - in (enumerace pouze vlastních, nezděděných vlastností)
+for (let key in person) {
+    if (person.hasOwnProperty(key)) {
+        console.log(key + ": " + person[key]);
+    }
+}
+
+// break continue
+for (let i = 0; i < 10; i++) {
+    if (i === 5) break;    // exits the loop when i is 5
+    if (i % 2 === 0) continue;    // skips even numbers
+    console.log(i);
+}
+
+// break labeled
+outerLoop: for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+        if (i === 1 && j === 1) {
+            break outerLoop;
+        }
+        console.log(i, j);
+    }
+}
+
+// continue labeled
+outerLoop: for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+        if (j === 1) {
+            continue outerLoop;
+        }
+        console.log(i, j);
+    }
+}
+
+// try - catch - finally
+try {
+    throw new Error("Something went wrong");
+} catch (error) {
+    console.log("Error:", error.message);
+} finally {
+    console.log("This always runs");
+}
+
+// try - catch - hledání typu chyby
+try {
+    // možný chybný kód
+} catch (error) {
+    if (error instanceof TypeError) {
+        console.log("Type error:", error.message);
+    } else if (error instanceof RangeError) {
+        console.log("Range error:", error.message);
+    } else {
+        console.log("Unknown error:", error.message);
+    }
+}
+
+// try - catch - logování a znovu vyhození
+try {
+    // možný chybný kód
+} catch (error) {
+    console.log("Logging error:", error.message);
+    throw error; // chyba znovu vyhozena
+}
+```
+
+[**ReferenceBook - Control Flow**](README.md#řídicí-struktura-control-flow)
