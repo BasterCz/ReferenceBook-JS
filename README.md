@@ -26,72 +26,28 @@ JavaScript má několik základních datových typů, které lze rozdělit do dv
    - `Array` (Pole)
    - `Function` (Funkce)
 
-Příklady:
-
-```javascript
-// Strings (Řetězce)
-let name1 = "John Doe";
-let name2 = 'John Doe';
-let name3 = `John Doe`;
-
-// Numbers (Čísla)
-let age = 30;
-let price = 19.99;
-
-// Booleans (Logické hodnoty)
-let isActive = true;
-let hasLicense = false;
-
-// Undefined
-let uninitializedVar;
-
-// Null
-let emptyVar = null;
-
-// Symbol
-let uniqueId = Symbol('id');
-
-// BigInt
-let bigNumber = BigInt(1234567890123456789012345678901234567890);
-
-// Object (Objekt)
-let person = {
-    firstName: "John",
-    lastName: "Doe",
-    age: 30
-};
-
-// Array (Pole)
-let fruits = ["Apple", "Banana", "Cherry"];
-
-// Function (Funkce)
-function greet(name) {
-    return "Hello, " + name;
-}
-```
-
-Iterabilita¹ datových typů:
-- Iterabilní: String, Array, Map, Set, TypedArray, arguments object
-- Neiterovatelné: Number, Boolean, Null, Undefined, Symbol, BigInt, Object (standardní)
-
-Detailní popis každého datového typu:
+#### Základní datové typy (pro začátečníky):
 
 1. **String**
-   - Primitivní: Ano
-   - Enumerable²: Ne (ale lze iterovat přes znaky)
-   - Způsob exportu³: Hodnota
-   - Popis: Reprezentuje textové řetězce. Může být uzavřen v jednoduchých (''), dvojitých ("") nebo zpětných (`) uvozovkách.
+   - **Primitivní**: Ano
+   - **Enumerable**: Ne (ale lze *iterovat* přes znaky)
+   - **Způsob exportu**: Hodnota
+   - **Návratová hodnota `typeof`**: "`string`"
+   - **Popis**: Reprezentuje textové řetězce. Může být uzavřen v jednoduchých (`''`), dvojitých (`""`) nebo zpětných (``` `` ```) uvozovkách.
+   - **Dobré vědět**: Řetězce jsou immutable (neměnné). Metody jako `toUpperCase()` vytvářejí nový řetězec.
     ```javascript
-    let text1 = 'Ahoj';
-    let text2 = "Světe";
+    let text1 = 'Hello';
+    let text2 = "World";
     let text3 = `Hodnota je: ${celeCislo}`; // Template literal
     ```
 
 2. **Number**
-   - Primitivní: Ano
-   - Enumerable: Ne
-   - Způsob exportu: Hodnota
-   - Popis: Reprezentuje jak celá čísla, tak i desetinná čísla. JavaScript používá 64bitový formát double-precision floating-point pro všechna čísla.
+   - **Primitivní**: Ano
+   - **Enumerable**: Ne
+   - **Způsob exportu**: Hodnota
+   - **Návratová hodnota `typeof`**: "`number`"
+   - **Popis**: Reprezentuje jak celá čísla, tak i desetinná čísla. JavaScript používá 64bitový formát double-precision floating-point pro všechna čísla.
+   - **Dobré vědět**: Obsahuje speciální hodnoty jako `Infinity`, `-Infinity` a `NaN` (Not a Number).
     ```javascript
     let celeCislo = 42;
     let desetinneCislo = 3.14;
@@ -99,62 +55,49 @@ Detailní popis každého datového typu:
     ```
 
 3. **Boolean**
-   - Primitivní: Ano
-   - Enumerable: Ne
-   - Způsob exportu: Hodnota
-   - Popis: Reprezentuje logickou hodnotu true nebo false.
+   - **Primitivní**: Ano
+   - **Enumerable**: Ne
+   - **Způsob exportu**: Hodnota
+   - **Návratová hodnota `typeof`**:: "`boolean`"
+   - **Popis**: Reprezentuje logickou hodnotu true nebo false.
+   - **Dobré vědět**: Hodnoty jako 0, "", null, undefined, NaN se vyhodnocují jako false v booleovském kontextu.
    ```javascript
    let jeAktivni = true;
    let maLicenci = false;
    ```
 
-
 4. **Undefined**
-   - Primitivní: Ano
-   - Enumerable: Ne
-   - Způsob exportu: Hodnota
-   - Popis: Reprezentuje proměnnou, která byla deklarována, ale nebyla jí přiřazena hodnota.
+   - **Primitivní**: Ano
+   - **Enumerable**: Ne
+   - **Způsob exportu**: Hodnota
+   - **Návratová hodnota `typeof`**:: "`undefined`"
+   - **Popis**: Reprezentuje proměnnou, která byla deklarována, ale nebyla jí přiřazena hodnota.
+   - **Dobré vědět**: Funkce bez explicitního return vrací undefined.
     ```javascript
     let nedifinovanaPtomenna;
     console.log(nedifinovanaPtomenna); // undefined
     ```
 
-
 5. **Null**
-   - Primitivní: Ano (technicky je to objekt, ale chová se jako primitivní typ)
-   - Enumerable: Ne
-   - Způsob exportu: Hodnota
-   - Popis: Reprezentuje záměrnou absenci jakékoli hodnoty nebo objektu.
+   - **Primitivní**: Ano (technicky je to objekt, ale chová se jako primitivní typ)
+   - **Enumerable**: Ne
+   - **Způsob exportu**: Hodnota
+   - **Návratová hodnota `typeof`**:: "`object`" (historická chyba v JS)
+   - **Popis**: Reprezentuje záměrnou absenci jakékoli hodnoty nebo objektu.
+   - **Dobré vědět**: null == undefined je true, ale null === undefined je false.
     ```javascript
     let prazdnaHodnota = null;
     ```
 
-6. **Symbol**
-   - Primitivní: Ano
-   - Enumerable: Ne
-   - Způsob exportu: Hodnota
-   - Popis: Reprezentuje unikátní identifikátor. Často se používá jako klíč pro vlastnosti objektů.
-    ```javascript
-    let id = Symbol('id');
-    let objekt = {
-    [id]: 12345
-    };
-    ```
+#### Pokročilejší datové typy:
 
-7. **BigInt**
-   - Primitivní: Ano
-   - Enumerable: Ne
-   - Způsob exportu: Hodnota
-   - Popis: Reprezentuje celá čísla libovolné přesnosti. Používá se pro velmi velká čísla.
-   ```javascript
-   let velkeCislo = 1234567890123456789012345678901234567890n;
-   ```
-
-8. **Object**
-   - Primitivní: Ne
-   - Enumerable: Ano (pro vlastní vlastnosti)
-   - Způsob exportu: Reference
-   - Popis: Kolekce klíč-hodnota párů. Základní stavební blok pro komplexní datové struktury.
+6. **Object**
+   - **Primitivní**: Ne
+   - **Enumerable**: Ano (pro vlastní vlastnosti)
+   - **Způsob exportu**: Reference
+   - **Návratová hodnota `typeof`**:: "`object`"
+   - **Popis**: Kolekce klíč-hodnota párů. Základní stavební blok pro komplexní datové struktury.
+   - **Dobré vědět**: Objekty jsou mutable (měnitelné). Lze dynamicky přidávat a odebírat vlastnosti.
     ```javascript
     let osoba = {
         jmeno: "Jan",
@@ -166,65 +109,110 @@ Detailní popis každého datového typu:
     };
     ```
 
-9. **Array**
-   - Primitivní: Ne (je to speciální typ objektu)
-   - Enumerable: Ano
-   - Způsob exportu: Reference
-   - Popis: Uspořádaná kolekce hodnot. Indexováno od nuly.
+7. **Array**
+   - **Primitivní**: Ne (je to speciální typ objektu)
+   - **Enumerable**: Ano
+   - **Způsob exportu**: Reference
+   - **Návratová hodnota `typeof`**:: "`object`"
+   - **Popis**: Uspořádaná kolekce hodnot. Indexováno od nuly.
+   - **Dobré vědět**: Délka pole je dynamická. `Array.isArray()` lze použít pro kontrolu, zda je hodnota pole.
     ```javascript
     let ovoce = ["jablko", "banán", "pomeranč"];
     ```
 
-10. **Function**
-    - Primitivní: Ne (je to speciální typ objektu)
-    - Enumerable: Ne
-    - Způsob exportu: Reference
-    - Popis: Blok kódu navržený k provádění konkrétního úkolu. Může přijímat vstupy (parametry) a vracet výstup.
+8. **Function**
+    - **Primitivní**: Ne (je to speciální typ objektu)
+    - **Enumerable**: Ne
+    - **Způsob exportu**: Reference
+    - **Návratová hodnota `typeof`**:: "`function`"
+    - **Popis**: Blok kódu navržený k provádění konkrétního úkolu. Může přijímat vstupy (parametry) a vracet výstup.
+    - **Dobré vědět**: Funkce jsou objekty prvního řádu v JavaScriptu. Mohou být přiřazeny proměnným, předány jako argumenty a vráceny z jiných funkcí.
     ```javascript
     function pozdrav(jmeno) {
         return `Ahoj, ${jmeno}!`;
     }
     ```
 
+#### Pokročilé datové typy:
+
+9. **Symbol**
+   - **Primitivní**: Ano
+   - **Enumerable**: Ne
+   - **Způsob exportu**: Hodnota
+   - **Návratová hodnota `typeof`**:: "`symbol`"
+   - **Popis**: Reprezentuje unikátní identifikátor. Často se používá jako klíč pro vlastnosti objektů.
+   - **Dobré vědět**: Každý Symbol je unikátní, i když má stejný popis.
+    ```javascript
+    let id = Symbol('id');
+    let objekt = {
+    [id]: 12345
+    };
+    ```
+
+10. **BigInt**
+    - **Primitivní**: Ano
+    - **Enumerable**: Ne
+    - **Způsob exportu**: Hodnota
+    - **Návratová hodnota `typeof`**:: "`bigint`"
+    - **Popis**: Reprezentuje celá čísla libovolné přesnosti. Používá se pro velmi velká čísla.
+    - **Dobré vědět**: BigInt nelze míchat s běžnými čísly v aritmetických operacích.
+    ```javascript
+    let velkeCislo = 1234567890123456789012345678901234567890n;
+    ```
+
 11. **(Date)**
-    - Primitivní: Ne (je to objekt)
-    - Enumerable: Ne
-    - Způsob exportu: Reference
-    - Popis: Reprezentuje datum a čas.
+    - **Primitivní**: Ne (je to objekt)
+    - **Enumerable**: Ne
+    - **Způsob exportu**: Reference
+    - **Návratová hodnota `typeof`**:: "`object`"
+    - **Popis**: Reprezentuje datum a čas.
+    - **Dobré vědět**: Měsíce jsou indexovány od 0 (0 = leden, 11 = prosinec).
     ```javascript
     let ted = new Date();
     ```
 
 12. **(RegExp)**
-    - Primitivní: Ne (je to objekt)
-    - Enumerable: Ne
-    - Způsob exportu: Reference
-    - Popis: Reprezentuje regulární výraz pro pokročilé vyhledávání a manipulaci s textem.
+    - **Primitivní**: Ne (je to objekt)
+    - **Enumerable**: Ne
+    - **Způsob exportu**: Reference
+    - **Návratová hodnota `typeof`**:: "`object`"
+    - **Popis**: Reprezentuje regulární výraz pro pokročilé vyhledávání a manipulaci s textem.
+    - **Dobré vědět**: Lze vytvořit pomocí literálu `/pattern/` nebo konstruktoru `new RegExp()`.
     ```javascript
     let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     ```
 
 13. **(Map)**
-    - Primitivní: Ne (je to objekt)
-    - Enumerable: Ano (pomocí speciálních metod)
-    - Způsob exportu: Reference
-    - Popis: Kolekce klíč-hodnota párů, kde klíče mohou být libovolného typu.
+    - **Primitivní**: Ne (je to objekt)
+    - **Enumerable**: Ano (pomocí speciálních metod)
+    - **Způsob exportu**: Reference
+    - **Návratová hodnota `typeof`**:: "`object`"
+    - **Popis**: Kolekce klíč-hodnota párů, kde klíče mohou být libovolného typu.
+    - **Dobré vědět**: Na rozdíl od objektů, Map zachovává pořadí vložení.
     ```javascript
     let mapa = new Map();
     mapa.set("klic", "hodnota");
     ```
 
 14. **(Set)**
-    - Primitivní: Ne (je to objekt)
-    - Enumerable: Ano (pomocí speciálních metod)
-    - Způsob exportu: Reference
-    - Popis: Kolekce unikátních hodnot libovolného typu.
+    - **Primitivní**: Ne (je to objekt)
+    - **Enumerable**: Ano (pomocí speciálních metod)
+    - **Způsob exportu**: Reference
+    - **Návratová hodnota `typeof`**:: "`object`"
+    - **Popis**: Kolekce unikátních hodnot libovolného typu.
+    - **Dobré vědět**: Užitečné pro odstranění duplicit z pole.
     ```javascript
     let set = new Set([1, 2, 3, 3, 4]); // Obsahuje 1, 2, 3, 4
     ```
 
+#### Důležité koncepty:
 
-Cvičení:
+- **Iterabilita¹:** String, Array, Map, Set, TypedArray, arguments object jsou iterabilní. Number, Boolean, Null, Undefined, Symbol, BigInt, Object (standardní) nejsou.
+- **Enumerable²:** Určuje, zda je vlastnost zahrnuta při enumeraci vlastností objektu.
+- **Způsob exportu³:** Hodnota (vytvoří se kopie) nebo Reference (předá se odkaz na původní objekt v paměti).
+
+#### Cvičení:
+
 1. Vytvořte proměnné pro každý datový typ a vypište je do konzole.
 - _<details><summary>Možné řešení</summary>_
 
@@ -422,9 +410,16 @@ Cvičení:
 ---
 
 Poznámky:
-- ¹ Iterabilita: Schopnost objektu definovat nebo přizpůsobit své chování při iteraci, například v cyklu for...of.
-- ² Enumerable: Vlastnost, která určuje, zda je daná vlastnost objektu zahrnuta při enumeraci vlastností objektu, například v cyklu for...in nebo při použití Object.keys().
-- ³ Způsob exportu: Určuje, jak je hodnota předávána při přiřazení nebo jako argument funkce. "Hodnota" znamená, že se vytvoří kopie, "Reference" znamená, že se předá odkaz na původní objekt v paměti.
+- ¹ **Iterabilita**: Schopnost objektu definovat nebo přizpůsobit své chování při iteraci. Iterabilní objekty implementují metodu Symbol.iterator, která vrací iterátor. Toto umožňuje použití v cyklech for...of a s operátorem spread (...). Iterabilní objekty mohou být procházeny prvek po prvku, což je užitečné pro práci s kolekcemi dat. Příklady iterabilních objektů zahrnují Array, String, Map, Set, a TypedArray.
+
+- ² **Enumerable**: Vlastnost objektu, která určuje, zda daná vlastnost bude zahrnuta při enumeraci vlastností objektu. Enumerabilní vlastnosti jsou viditelné a dostupné při použití cyklu for...in, metody Object.keys(), nebo při serializaci objektu (např. JSON.stringify()). Ve výchozím nastavení jsou vlastnosti vytvořené přímo na objektu enumerabilní, zatímco vlastnosti zděděné z prototypu obvykle nejsou. Enumerabilitu vlastnosti lze kontrolovat a měnit pomocí metody Object.getOwnPropertyDescriptor() a Object.defineProperty().
+
+- ³ **Způsob exportu**: Určuje, jak je hodnota předávána při přiřazení nebo jako argument funkce. 
+  - "**Hodnota**" znamená, že se vytvoří kopie původní hodnoty. To platí pro všechny primitivní typy (String, Number, Boolean, Undefined, Null, Symbol, BigInt). Když předáváte primitivní hodnotu, vytvoří se její kopie a změny provedené na kopii neovlivní původní hodnotu.
+  - "**Reference**" znamená, že se předá odkaz na původní objekt v paměti. To platí pro všechny objektové typy (Object, Array, Function, Date, RegExp, Map, Set). Když předáváte referenci, obě proměnné ukazují na stejný objekt v paměti, takže změny provedené přes jednu referenci se projeví ve všech referencích na tento objekt.
+
+
+---
 
 ### Proměnné (Variables)
 
