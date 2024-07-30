@@ -425,3 +425,178 @@ Poznámky:
 - ¹ Iterabilita: Schopnost objektu definovat nebo přizpůsobit své chování při iteraci, například v cyklu for...of.
 - ² Enumerable: Vlastnost, která určuje, zda je daná vlastnost objektu zahrnuta při enumeraci vlastností objektu, například v cyklu for...in nebo při použití Object.keys().
 - ³ Způsob exportu: Určuje, jak je hodnota předávána při přiřazení nebo jako argument funkce. "Hodnota" znamená, že se vytvoří kopie, "Reference" znamená, že se předá odkaz na původní objekt v paměti.
+
+### Proměnné (Variables)
+
+Proměnné se používají k ukládání datových hodnot. JavaScript má tři způsoby deklarace proměnných:
+
+1. `var`: Proměnná s funkčním nebo globálním rozsahem (starší syntax)
+2. `let`: Proměnná s blokovým rozsahem (zavedeno v ES6)
+3. `const`: Konstanta s blokovým rozsahem (zavedeno v ES6)
+
+Příklady:
+
+```javascript
+// var (vyhnout se používání v moderním JavaScriptu)
+var oldVar = "Jsem staromódní";
+
+// let
+let age = 30;
+age = 31; // OK
+
+// const
+const PI = 3.14159;
+PI = 3; // Chyba
+
+function varLetTest() {
+  console.log(foo); // undefined - hoisted, initialized
+  console.log(bar); // ReferenceError
+  
+  var foo = "Foo";
+  let bar = "Bar";
+
+  console.log(foo, bar); // Foo Bar
+
+  {
+    var moo = "Mooo"
+    let baz = "Bazz";
+    console.log(moo, baz); // Mooo Bazz
+  }
+
+  console.log(moo); // Mooo
+  console.log(baz); // ReferenceError
+}
+
+run();
+```
+
+Klíčové rozdíly:
+- `var` má **funkční** nebo **globální** rozsah (scope), zatímco `let` a `const` mají **blokový** rozsah.
+- Proměnné deklarované pomocí `var` jsou **vyzdviženy (hoisted)**, zatímco `let` a `const` nejsou.
+- Proměnné `const` nemohou být přeřazeny, ale jejich vlastnosti mohou být modifikovány, pokud jsou objekty.
+
+Naming Conventions:
+- `maleVelke` proměnné  a funkce    (camelCase)
+- `VelkeVelke` třídy (classes)      (PascalCase)
+- `SPOJENY_HAD` konstanty           (UPPER_SNAKE_CASE)
+
+    ```javascript
+    let userName = "John";
+    const MAX_SIZE = 100;
+    class UserProfile {}
+    ```
+
+Rozsah (scope):
+
+- **Globální rozsah**: Proměnné deklarované mimo jakoukoli funkci.
+- **Funkční rozsah**: Proměnné deklarované uvnitř funkce (platí pro `var`).
+- **Blokový rozsah**: Proměnné deklarované uvnitř bloku, např. uvnitř if statement nebo for loop (platí pro `let` a `const`).
+
+```javascript
+let globalniPromenna = "Jsem globální";
+
+function testScope() {
+let funkcniPromenna = "Jsem uvnitř funkce";
+
+if (true) {
+    let blokovaPromenna = "Jsem uvnitř bloku";
+    var varPromenna = "Jsem také uvnitř bloku, ale s funkčním rozsahem";
+    console.log(blokovaPromenna); // OK
+}
+
+console.log(funkcniPromenna); // OK
+console.log(varPromenna); // OK
+console.log(blokovaPromenna); // ReferenceError
+}
+
+console.log(globalniPromenna); // OK
+console.log(funkcniPromenna); // ReferenceError
+```
+
+**Hoistiong (vyzdvižení):**
+
+Hoisting je JavaScript mechanismus, kde proměnné a funkční deklarace jsou přesunuty na začátek jejich rozsahu před provedením kódu.
+
+```javascript
+console.log(hoistedVar); // undefined
+var hoistedVar = 5;
+
+hoistedFunction(); // "Ahoj, jsem vyzdvižená funkce!"
+function hoistedFunction() {
+console.log("Ahoj, jsem vyzdvižená funkce!");
+}
+
+console.log(notHoistedLet); // ReferenceError
+let notHoistedLet = 10;
+```
+
+**Temporal Dead Zone (TDZ)**
+
+TDZ je chování specifické pro `let` a `const`, kde proměnné existují v bloku, ale nemohou být použity před jejich deklarací.
+
+```javascript
+{
+console.log(tdz); // ReferenceError
+let tdz = 5;
+}
+```
+**Globální objekty**
+
+V prohlížeči je globálním objektem `window`, v Node.js je to `global`.
+
+```javascript
+// V prohlížeči
+window.globalniPromenna = "Jsem globální";
+console.log(globalniPromenna); // "Jsem globální"
+
+// V Node.js
+global.globalniPromenna = "Jsem globální";
+console.log(globalniPromenna); // "Jsem globální"
+```
+
+Best Practices:
+1. Pokud lze, používat `const`
+2. Pokud má být přeřazován, použít `let`
+3. Vyhnout se `var`
+4. Deklarovat v horní části rozsahu (scope)
+5. Používat dostatečně jasné názvy
+
+
+Cvičení:
+1. Deklarovat `const` proměnnou pro vaše jméno a `let` proměnnou pro váš věk.
+- _<details><summary>Možné řešení</summary>_
+
+    ```javascript
+    const jmeno = "Jan Novák";
+    let vek = 31;
+    ```
+</details>
+
+2. Zkusit přeřadit `const` proměnnou. Co se stane?
+- _<details><summary>Možné řešení</summary>_
+
+    ```javascript
+    const jmeno = "Karel Dravý";
+    jmeno = "Ondřej Prchal" // TypeError: Assignment to a constant variable.
+    ```
+</details>
+
+3. Vytvořit objekt pomocí `const` a modifikovat jednu z jeho vlastností. Lze?
+- _<details><summary>Možné řešení</summary>_
+
+    ```javascript
+    const osoba = {
+    jmeno: "Jan Novák",
+    vek: 30
+    };
+
+    osoba.vek = 31; // OK
+    console.log(osoba.vek); // 31
+
+    osoba = { jmeno: "Petr Svoboda", vek: 25 }; // TypeError: Assignment to a constant variable.
+    ```
+</details>
+
+[**CheatSheet - Variables**](cheatsheet.md#proměnné-variables)
+
+[Zpět na obsah](#obsah-table-of-contents)

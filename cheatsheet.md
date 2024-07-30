@@ -97,3 +97,90 @@ console.log(Array.isArray(array1));         // true (specifická kontrola pro po
 
 [**ReferenceBook - Data Types**](README.md#datové-typy-data-types)
 
+### Proměnné (Variables)
+
+```javascript
+// --- Přeřazování proměnných ---
+
+var oldVar = "I'm old-fashioned";
+oldVar = "I'm old"      //OK
+let age = 30;
+age = 31;               // OK
+const PI = 3.14159;
+PI = 3;                 // Error
+
+// --- Rozsah `var` vs `let` ---
+
+function varScope() {
+  var x = 1;
+  if (true) {
+    var x = 2;          // Stejná proměnná!
+    console.log(x);     // 2
+  }
+  console.log(x);       // 2
+}
+
+function blockScope() {
+  let x = 1;
+  if (true) {
+    let x = 2;          // Různé proměnné
+    console.log(x);     // 2
+  }
+  console.log(x);       // 1
+}
+
+function blockScope2() {
+  let x = 1;
+  if (true) {
+    let y = 2;  
+    console.log(x, y);  // 1 2
+  }
+  console.log(x, y);    // ReferenceError: y is not defined
+}
+
+// --- Vyzdvižení proměnných (Hoisting), TDZ (Temporal Dead Zone) ---
+
+console.log(a);  // undefined
+var a = 5;
+console.log(b);  // ReferenceError
+let b = 5;
+console.log(c);  // ReferenceError
+const c = 5;
+
+// --- Deklarace a mutace objektů ---
+
+const person = {
+  name: "John Doe",
+  age: 30
+};
+
+person.age = 31;            // OK
+console.log(person.age);    // 31
+
+person = { name: "Jane Doe", age: 25 };  // Error
+
+const numbers = [1, 2, 3];
+numbers.push(4);            // OK
+numbers[0] = 2;             // OK
+console.log(numbers);       // [2, 2, 3, 4]
+
+numbers = [5, 6, 7];        // TypeError: Assignment to constant variable.
+
+// --- Globální proměnné ---
+
+// implicitní
+function createGlobal() {
+  globalVar = "I'm global"; // vytvoří globální proměnnou
+}
+createGlobal();
+console.log(globalVar);     // "I'm global"
+
+// explicitní
+var globalVar = "I'm explicitly global";
+window.globalVar = "I'm also explicitly global";  // In browser environment
+```
+
+![Explicit global in browser - Variables](screenshots/explicit-global-in-browser.png)
+
+
+[**ReferenceBook - Variables**](README.md#proměnné-variables)
