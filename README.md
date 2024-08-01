@@ -28,7 +28,7 @@ JavaScript má několik základních datových typů, které lze rozdělit do dv
    - `Array` (Pole)
    - `Function` (Funkce)
 
-#### Základní datové typy (pro začátečníky):
+#### Základní datové typy:
 
 1. **String**
    - **Primitivní**: Ano
