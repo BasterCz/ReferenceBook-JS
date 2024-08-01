@@ -76,8 +76,8 @@ JavaScript má několik základních datových typů, které lze rozdělit do dv
    - **Popis**: Reprezentuje proměnnou, která byla deklarována, ale nebyla jí přiřazena hodnota.
    - **Dobré vědět**: Funkce bez explicitního return vrací undefined.
     ```javascript
-    let nedifinovanaPtomenna;
-    console.log(nedifinovanaPtomenna); // undefined
+    let nedifinovanaPromenna;
+    console.log(nedifinovanaPromenna); // undefined
     ```
 
 5. **Null**
